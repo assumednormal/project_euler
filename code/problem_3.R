@@ -3,9 +3,12 @@
 
 # find the largest prime factor of 600851475143
 #   method 1:
-#   - list all prime numbers below sqrt(600851475143) using a sieve (primes)
-#   - search for factors from primes (factors)
-#   - get largest prime from factors (max_prime)
+#   - at least one prime factor must lie below sqrt(600851475143) (max_factor)
+#   - list all prime numbers below max_factor using a sieve (primes)
+#   - search for factors among primes (factors) and their complements
+#     (complements)
+#   - check if complements are prime (prime_complements)
+#   - get largest prime from factors and prime_complements (answer1)
 
 
 # method 1 ----------------------------------------------------------------
@@ -35,9 +38,13 @@ while(length(x = common) > 0 & idx < length(x = primes)) {
 complements <- sapply(X = primes, FUN = function(f) {
   ifelse(test = 600851475143 %% f == 0, yes = 600851475143 / f, no = 0)
 })
+factors <- primes[complements > 0]
+complements <- complements[complements > 0]
 
 # check if complements are prime
 prime_complements <- sapply(X = complements, FUN = function(f) {
-  !any(f %% primes[primes < sqrt(x = f)] == 0)
-})
-factor_list <- c(primes[complements > 0], complements[complements > 0])
+                              !any(f %% primes[primes < sqrt(x = f)] == 0)
+                            })
+
+# answer is maximum among primes and prime complements
+answer1 <- max(factors, complements[prime_complements])
