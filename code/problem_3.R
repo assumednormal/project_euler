@@ -12,7 +12,7 @@
 
 
 # method 1 ----------------------------------------------------------------
-
+system.time({
 # at least one prime factor must lie below sqrt(600851475143)
 max_factor <- floor(x = sqrt(x = 600851475143))
 
@@ -47,4 +47,4 @@ prime_complements <- sapply(X = complements, FUN = function(f) {
 })
 
 # answer is maximum among primes and prime complements
-answer1 <- max(factors, complements[prime_complements])
+answer1 <- max(factors, complements[prime_complements])})
