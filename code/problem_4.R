@@ -5,8 +5,8 @@
 #   method 1:
 #   - find all products of two 3-digit numbers (products)
 #   - remove all products divisible by 10 (products)
-#   - 
-
+#   - find all palindromes (palindromes)
+#   - find largest number that is also a palindrome (answer1)
 
 # method 1 ----------------------------------------------------------------
 
@@ -24,7 +24,7 @@ products <- sort(x = unique(x = products))
 # remove all numbers divisible by 10
 products <- products[products %% 10 != 0]
 
-# find all palindromes palindrome
+# find all palindromes
 palindromes <- sapply(X = products, FUN = function(p) {
   palindrome <- 0
   char_p <- strsplit(x = paste0(p), split = NULL)[[1]]
