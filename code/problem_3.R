@@ -43,8 +43,13 @@ complements <- complements[complements > 0]
 
 # check if complements are prime
 prime_complements <- sapply(X = complements, FUN = function(f) {
+<<<<<<< HEAD
   !any(f %% primes[primes < sqrt(x = f)] == 0)
 })
+=======
+                              !any(f %% primes[primes < sqrt(x = f)] == 0)
+                            })
+>>>>>>> 92192923d73fc468b803792a0e14822fa2d9e6be
 
 # answer is maximum among primes and prime complements
 answer1 <- max(factors, complements[prime_complements])
