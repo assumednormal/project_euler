@@ -1,4 +1,4 @@
-# problem: smallest multiple
+# problem: 5 - smallest multiple
 # url: http://projecteuler.net/problem=5
 
 # find the smallest positive number that is evenly divisble by all numbers from 1
