@@ -32,9 +32,9 @@ while(length(x = common) > 0 & idx < length(x = primes)) {
 multiplicities <- rep(x = 1, length.out = length(primes))
 for(i in 2:20) {
   for(j in 1:length(x = primes)) {
-    k <- 1
-    while(i %% primes[j]^k == 0) k <- k + 1
-    multiplicities[j] <- max(multiplicities[j], k - 1)
+    k <- 0
+    while(i %% primes[j]^(k + 1) == 0) k <- k + 1
+    multiplicities[j] <- max(multiplicities[j], k)
   }
 }
 
