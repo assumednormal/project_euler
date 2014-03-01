@@ -17,7 +17,7 @@ max_factor <- floor(x = sqrt(x = 600851475143))
 primes <- seq.int(from = 2, to = max_factor, by = 1)
 idx <- 1
 prime <- primes[idx]
-multiples <- tryCatch(expr = seq.int(from = 2 * prime, to = max_factor,
+multiples <- tryCatch(expr = seq.int(from = prime**2, to = max_factor,
                                      by = prime),
                       error = function(e) 0)
 common <- intersect(x = primes, y = multiples)
@@ -25,11 +25,19 @@ while(length(x = common) > 0 & idx < length(x = primes)) {
   primes <- setdiff(x = primes, y = common)
   idx <- idx + 1
   prime <- primes[idx]
-  multiples <- tryCatch(expr = seq.int(from = 2 * prime, to = max_factor,
+  multiples <- tryCatch(expr = seq.int(from = prime**2, to = max_factor,
                                        by = prime),
                         error = function(e) 0)
   common <- intersect(x = primes, y = multiples)
 }
 
 # search for factors among the primes
-factor_list <- primes
+complements <- sapply(X = primes, FUN = function(f) {
+  ifelse(test = 600851475143 %% f == 0, yes = 600851475143 / f, no = 0)
+})
+
+# check if complements are prime
+prime_complements <- sapply(X = complements, FUN = function(f) {
+  !any(f %% primes[primes < sqrt(x = f)] == 0)
+})
+factor_list <- c(primes[complements > 0], complements[complements > 0])
