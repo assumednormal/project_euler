@@ -34,10 +34,7 @@ digits <- as.integer(x = strsplit(x = number, split = NULL)[[1]])
 # method 1 ----------------------------------------------------------------
 
 # calculate all products of five consecutive digits
-products <- vector(mode = "integer", length = 996)
-for(i in 1:996) {
-  products[i] <- prod(digits[i:(i + 4)])
-}
+products <- sapply(X = 1:996, FUN = function(i) prod(digits[i:(i + 4)]))
 
 # find largest product
 answer1 <- max(products)
