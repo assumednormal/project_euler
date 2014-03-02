@@ -17,8 +17,8 @@
 max_factor <- floor(x = sqrt(x = 600851475143))
 
 # use a sieve to generate primes below sqrt(600851475143)
-primes <- seq.int(from = 2, to = max_factor, by = 1)
-idx <- 1
+primes <- c(2, seq.int(from = 3, to = max_factor, by = 2))
+idx <- 2
 prime <- primes[idx]
 multiples <- tryCatch(expr = seq.int(from = prime**2, to = max_factor,
                                      by = prime),
